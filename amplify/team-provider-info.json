@@ -10,6 +10,11 @@
       "StackName": "amplify-pets-dev-181049",
       "StackId": "arn:aws:cloudformation:eu-west-1:749227062144:stack/amplify-pets-dev-181049/f308e890-99e2-11ee-91ea-0a12964d7079",
       "AmplifyAppId": "d37rb7wrnd145u"
+    },
+    "categories": {
+      "auth": {
+        "pets2aeb3822": {}
+      }
     }
   }
 }
