@@ -1,0 +1,13 @@
+type Pet @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  name: String!
+  description: String!
+  petType: PetType!
+}
+
+enum PetType {
+  dog
+  cat
+  rabbit
+  turtle
+}

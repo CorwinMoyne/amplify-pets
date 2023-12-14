@@ -12,7 +12,6 @@ Amplify.configure(config);
 
 export const client = generateClient();
 
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
