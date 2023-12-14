@@ -1,25 +1,49 @@
+import type { WithAuthenticatorProps } from "@aws-amplify/ui-react";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import './App.css';
-import logo from './logo.svg';
+import { FormEvent } from "react";
 
-function App() {
+function App({ signOut, user }: WithAuthenticatorProps) {
+  
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+
+    console.log(event);
+
+    // event.target[petName];
+
+    const { target } = event;
+
+    // await client.graphql({
+    //   query: createPet,
+    //   variables: {
+    //     input: {
+    //       name: target.petName,
+    //       description,
+    //       petType
+    //     }
+    //   }
+    // })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Enter a name" name="petName" />
+        <input
+          type="text"
+          placeholder="Enter a description"
+          name="petDescription"
+        />
+        <select name="petType">
+          <option value="mpme">Please select a dog</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="rabbit">Rabbit</option>
+          <option value="turtle">Turtle</option>
+        </select>
+        <button>Create pet</button>
+      </form>
     </div>
   );
 }

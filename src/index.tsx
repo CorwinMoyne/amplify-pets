@@ -1,13 +1,17 @@
 import { ThemeProvider } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
+import { generateClient } from 'aws-amplify/api';
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import config from "./aws-exports";
+import config from './amplifyconfiguration.json';
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 Amplify.configure(config);
+
+export const client = generateClient();
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
