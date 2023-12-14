@@ -6,6 +6,7 @@ import { client } from ".";
 import { Pet } from "./API";
 import { createPet, deletePet } from "./graphql/mutations";
 import { listPets } from "./graphql/queries";
+import { PetCreateForm } from "./ui-components";
 
 function App({ signOut, user }: WithAuthenticatorProps) {
   const [pets, setPets] = useState<Pet[]>([]);
@@ -59,6 +60,7 @@ function App({ signOut, user }: WithAuthenticatorProps) {
 
   return (
     <div>
+      <PetCreateForm  />
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Enter a name" name="petName" />
         <input
