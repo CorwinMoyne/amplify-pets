@@ -3,20 +3,19 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { FormEvent, useEffect, useState } from "react";
 import { client } from ".";
+import { Pet } from "./API";
 import { createPet, deletePet } from "./graphql/mutations";
 import { listPets } from "./graphql/queries";
 
 function App({ signOut, user }: WithAuthenticatorProps) {
-  const [pets, setPets] = useState([]);
-
-  console.log("pets", pets);
+  const [pets, setPets] = useState<Pet[]>([]);
 
   useEffect(() => {
     (async () => {
-      const res: any = await client.graphql({
+      const { data } = await client.graphql({
         query: listPets,
       });
-      setPets(res.data.listPets.items);
+      setPets(data.listPets.items);
     })();
   }, []);
 
@@ -26,7 +25,7 @@ function App({ signOut, user }: WithAuthenticatorProps) {
     const target = event.target as any;
 
     try {
-      await client.graphql({
+      const { data } = await client.graphql({
         query: createPet,
         variables: {
           input: {
@@ -36,6 +35,7 @@ function App({ signOut, user }: WithAuthenticatorProps) {
           },
         },
       });
+      setPets((prev) => [...prev, data.createPet]);
     } catch (error) {
       console.error(error);
     }
@@ -47,13 +47,13 @@ function App({ signOut, user }: WithAuthenticatorProps) {
         query: deletePet,
         variables: {
           input: {
-            id
-          }
-        }
-      })
+            id,
+          },
+        },
+      });
+      setPets(pets.filter((pet) => pet.id !== id));
     } catch (error) {
       console.error(error);
-      
     }
   }
 
