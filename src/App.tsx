@@ -3,7 +3,7 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { FormEvent, useEffect, useState } from "react";
 import { client } from ".";
-import { createPet } from "./graphql/mutations";
+import { createPet, deletePet } from "./graphql/mutations";
 import { listPets } from "./graphql/queries";
 
 function App({ signOut, user }: WithAuthenticatorProps) {
@@ -41,6 +41,22 @@ function App({ signOut, user }: WithAuthenticatorProps) {
     }
   }
 
+  async function handleDeletePet(id: string) {
+    try {
+      await client.graphql({
+        query: deletePet,
+        variables: {
+          input: {
+            id
+          }
+        }
+      })
+    } catch (error) {
+      console.error(error);
+      
+    }
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -63,6 +79,7 @@ function App({ signOut, user }: WithAuthenticatorProps) {
         <ul>
           {pets?.map((pet: any) => (
             <li
+              onClick={() => handleDeletePet(pet.id)}
               key={pet.id}
               style={{
                 listStyle: "none",
