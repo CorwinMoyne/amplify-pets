@@ -17,6 +17,7 @@ export const createPet = /* GraphQL */ `mutation CreatePet(
     name
     description
     petType
+    image
     createdAt
     updatedAt
     owner
@@ -36,6 +37,7 @@ export const updatePet = /* GraphQL */ `mutation UpdatePet(
     name
     description
     petType
+    image
     createdAt
     updatedAt
     owner
@@ -55,6 +57,7 @@ export const deletePet = /* GraphQL */ `mutation DeletePet(
     name
     description
     petType
+    image
     createdAt
     updatedAt
     owner

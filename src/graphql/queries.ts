@@ -14,6 +14,7 @@ export const getPet = /* GraphQL */ `query GetPet($id: ID!) {
     name
     description
     petType
+    image
     createdAt
     updatedAt
     owner
@@ -28,6 +29,7 @@ export const listPets = /* GraphQL */ `query ListPets($filter: ModelPetFilterInp
       name
       description
       petType
+      image
       createdAt
       updatedAt
       owner

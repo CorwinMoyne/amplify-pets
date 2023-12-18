@@ -17,6 +17,7 @@ export const onCreatePet = /* GraphQL */ `subscription OnCreatePet(
     name
     description
     petType
+    image
     createdAt
     updatedAt
     owner
@@ -36,6 +37,7 @@ export const onUpdatePet = /* GraphQL */ `subscription OnUpdatePet(
     name
     description
     petType
+    image
     createdAt
     updatedAt
     owner
@@ -55,6 +57,7 @@ export const onDeletePet = /* GraphQL */ `subscription OnDeletePet(
     name
     description
     petType
+    image
     createdAt
     updatedAt
     owner

@@ -26,11 +26,13 @@ export declare type PetUpdateFormInputValues = {
     name?: string;
     description?: string;
     petType?: string;
+    image?: string;
 };
 export declare type PetUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
     petType?: ValidationFunction<string>;
+    image?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type PetUpdateFormOverridesProps = {
@@ -38,6 +40,7 @@ export declare type PetUpdateFormOverridesProps = {
     name?: PrimitiveOverrideProps<TextFieldProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;
     petType?: PrimitiveOverrideProps<SelectFieldProps>;
+    image?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type PetUpdateFormProps = React.PropsWithChildren<{
     overrides?: PetUpdateFormOverridesProps | undefined | null;

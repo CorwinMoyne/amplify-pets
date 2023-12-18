@@ -3,6 +3,7 @@ type Pet @model @auth(rules: [{ allow: owner }]) {
   name: String!
   description: String!
   petType: PetType!
+  image: String!
 }
 
 enum PetType {
@@ -11,3 +12,4 @@ enum PetType {
   rabbit
   turtle
 }
+

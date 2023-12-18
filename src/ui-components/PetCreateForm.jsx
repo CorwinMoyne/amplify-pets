@@ -32,23 +32,27 @@ export default function PetCreateForm(props) {
     name: "",
     description: "",
     petType: "",
+    image: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
   const [petType, setPetType] = React.useState(initialValues.petType);
+  const [image, setImage] = React.useState(initialValues.image);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setDescription(initialValues.description);
     setPetType(initialValues.petType);
+    setImage(initialValues.image);
     setErrors({});
   };
   const validations = {
     name: [{ type: "Required" }],
     description: [{ type: "Required" }],
     petType: [{ type: "Required" }],
+    image: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -79,6 +83,7 @@ export default function PetCreateForm(props) {
           name,
           description,
           petType,
+          image,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -144,6 +149,7 @@ export default function PetCreateForm(props) {
               name: value,
               description,
               petType,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -170,6 +176,7 @@ export default function PetCreateForm(props) {
               name,
               description: value,
               petType,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -196,6 +203,7 @@ export default function PetCreateForm(props) {
               name,
               description,
               petType: value,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.petType ?? value;
@@ -231,6 +239,33 @@ export default function PetCreateForm(props) {
           {...getOverrideProps(overrides, "petTypeoption3")}
         ></option>
       </SelectField>
+      <TextField
+        label="Image"
+        isRequired={true}
+        isReadOnly={false}
+        value={image}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              description,
+              petType,
+              image: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.image ?? value;
+          }
+          if (errors.image?.hasError) {
+            runValidationTasks("image", value);
+          }
+          setImage(value);
+        }}
+        onBlur={() => runValidationTasks("image", image)}
+        errorMessage={errors.image?.errorMessage}
+        hasError={errors.image?.hasError}
+        {...getOverrideProps(overrides, "image")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
